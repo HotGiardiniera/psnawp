@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Iterable
+from typing import Any, Iterable, Dict, List
 
 from psnawp_api.models.group import Group
 from psnawp_api.models.user import User
@@ -149,11 +149,11 @@ class Client:
 
         return response
 
-    def get_account_devices(self) -> list[dict[str, Any]]:
+    def get_account_devices(self) -> List[Dict[str, Any]]:
         """Gets the list of devices the client is logged into.
 
         :returns: A dict containing info similar to what is shown below:
-        :rtype: list[dict[str, Any]]
+        :rtype: List[Dict[str, Any]]
 
             .. code-block:: json
 
@@ -183,7 +183,7 @@ class Client:
         ).json()
 
         # Just so mypy doesn't complain
-        account_devices: list[dict[str, Any]] = response.get("accountDevices", [])
+        account_devices: List[Dict[str, Any]] = response.get("accountDevices", [])
         return account_devices
 
     def friends_list(self, limit: int = 1000) -> Iterable[User]:
